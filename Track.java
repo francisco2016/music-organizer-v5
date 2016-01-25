@@ -42,18 +42,17 @@ public class Track
     /**
      *  para incrementar el contador de uno en uno cada vez que se reproduce una canción.  ------------------------- 0052
      */
-    public int incrementaContadorReproduciones(){
+    public void incrementaContadorReproduciones(){
         playCount = playCount + 1;
-        return playCount;
+        
     }
     
     /**
      *  para poner a 0 el contador de las reproduciones de una cancion.  ------------------------- 0052
      */
-    public int poneContadorEnCero(){
+    public void poneContadorEnCero(){
         playCount = 0;
-        return playCount;
-    }
+     }
     
     /**
      * Return the artist.

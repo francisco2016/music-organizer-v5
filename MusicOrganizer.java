@@ -71,12 +71,13 @@ public class MusicOrganizer
             Track track = tracks.get(index);
             player.startPlaying(track.getFilename());
             System.out.println("Now playing: " + track.getArtist() + " - " + track.getTitle());
+            Track.incrementaContadorReproduciones();
         }
-        index.incrementaContadorReproduciones();
+       
     }
     
     /**
-     * Return the number of tracks in the collection.
+     * Return the number of tracks in the collection.T
      * @return The number of tracks in the collection.
      */
     public int getNumberOfTracks()

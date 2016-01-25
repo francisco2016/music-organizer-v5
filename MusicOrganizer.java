@@ -70,8 +70,8 @@ public class MusicOrganizer
         if(indexValid(index)) {
             Track track = tracks.get(index);
             player.startPlaying(track.getFilename());
-            System.out.println("Now playing: " + track.getArtist() + " - " + track.getTitle());
-            Track.incrementaContadorReproduciones();
+            System.out.println("Now playing: " + track.getArtist() + " - " + track.getTitle()+ " - " +
+                                    track.incrementaContadorReproduciones());
         }
        
     }

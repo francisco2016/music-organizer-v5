@@ -34,11 +34,25 @@ public class MusicOrganizer
     /**
      * permita eliminar del organizador los tracks que contengan un determinado artista usando un iterador
      */
-    public void removeByArtist(String nombreAr){
+    public void removeByArtist(String nombreAr){  //------------------------------------------------- 0055
         Iterator<Track> pistas = tracks.iterator();
         while(pistas.hasNext()){
             Track mostrarPistas = pistas.next();
             if(mostrarPistas.getArtist().contains(nombreAr)){
+               pistas.remove();
+            }
+        }
+    }
+    
+    /**
+     * que permita eliminar del organizador los tracks que contengan una determinada cadena 
+     * en el título de la canción 
+     */
+    public void removeByTitle(String titulo){  //------------------------------------------------- 0055
+        Iterator<Track> pistas = tracks.iterator();
+        while(pistas.hasNext()){
+            Track mostrarPistas = pistas.next();
+            if(mostrarPistas.getTitle().contains(titulo)){
                pistas.remove();
             }
         }

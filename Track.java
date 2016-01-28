@@ -15,6 +15,8 @@ public class Track
     private String filename;
     //para lleva la cuenta de las veces que se ha reproducido una canción.
     private int playCount;   //---------------------------------------------------------  0052
+    //para indicar la duración de la canción.
+    private int duracion;   //-----------------------------------------------------------  0053
     
     /**
      * Constructor for objects of class Track.
@@ -25,6 +27,8 @@ public class Track
     public Track(String artist, String title, String filename)
     {
         setDetails(artist, title, filename);
+        playCount = 0;      //---------------------------------------------------------  0052
+        duracion = 0;        //---------------------------------------------------------  0053
     }
     
     /**
@@ -37,14 +41,27 @@ public class Track
     {
         setDetails("unknown", "unknown", filename);
         playCount = 0;      //---------------------------------------------------------  0052
+         duracion = 0;        //---------------------------------------------------------  0053
     }
     
     /**
+     * mt para asignar la duración a  una canción.
+     */
+    public void setTiempoCancion(int duracion){//---------------------------------------------------------  0053
+        this.duracion = duracion ;
+    }
+    /**
+     * mt para retornar la duración a una canción.
+     */
+    public int getTiempoCancion(){//---------------------------------------------------------  0053
+        return duracion;
+    }
+    /**
      *  para incrementar el contador de uno en uno cada vez que se reproduce una canción.  ------------------------- 0052
      */
-    public int incrementaContadorReproduciones(){
-        playCount = playCount + 1;
-        return playCount;
+    public void incrementaContadorReproduciones(){
+        playCount ++;
+         
     }
     
     /**
@@ -87,7 +104,8 @@ public class Track
      */
     public String getDetails()
     {
-        return artist + ": " + title + "  (file: " + filename + ")";
+        return artist + ": " + title + "  (file: " + filename + ") -Reproducciones " +playCount+
+                            " -Duracion de la cancion. " + getTiempoCancion();
     }
     
     /**

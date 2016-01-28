@@ -83,7 +83,9 @@ public class MusicOrganizer
      * dos parámetros, uno para elegir la posición del track, el otro para asignar la duracion.
      */
     public void setDuracion(int index,int tiempo){     //------------------------------------------------------------------ 0053
-        tracks.get(index).setTiempoCancion(tiempo);
+        if(index >= 0 && index < tracks.size()){
+            tracks.get(index).setTiempoCancion(tiempo);
+        }
     }
     
     

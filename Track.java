@@ -105,7 +105,7 @@ public class Track
     public String getDetails()
     {
         return artist + ": " + title + "  (file: " + filename + ") -Reproducciones " +playCount+
-                            " -Duracion de la cancion. " + getTiempoCancion();
+                            " -Duracion de la cancion. " + getTiempoCancion()+ " minutos. ";
     }
     
     /**

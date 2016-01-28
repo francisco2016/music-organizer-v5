@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * A class to hold details of audio tracks.
@@ -31,11 +32,25 @@ public class MusicOrganizer
     }
     
     /**
+     * muestra los detalles de todos los tracks almacenados en un organizador usando un iterador.   ------------------- 0055
+     */
+    public void listAllTrackWithIterator(){
+        Iterator<Track> pistas = tracks.iterator();
+        while(pistas.hasNext()){
+            Track mostrarPistas = pistas.next();
+            System.out.println(mostrarPistas.getDetails());
+        
+        }
+    
+    }
+    
+    
+    /**
      * añade un método a la clase MusicOrganizer llamado findInTitle que tome un único parámetro de tipo String y muestre
      * por pantalla la información de los tracks que contienen dicha cadena en el título de la canción. ------------ 0052
      */
     public void findInTitle(String informaciónDeTracks){
-       for(Track datos : tracks){
+       for(Track datos : tracks){            //--------------------------------------------------------------------- 0052
            if(datos.getTitle().contains(informaciónDeTracks)){
                System.out.println(datos.getDetails());
            }

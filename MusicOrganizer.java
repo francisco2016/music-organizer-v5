@@ -143,12 +143,15 @@ public class MusicOrganizer
      */
     public void playTrack(int index)
     {
-        if(indexValid(index)) {
+        if(indexValid(index) && reproduciendose == false) {
             Track track = tracks.get(index);
             track.incrementaContadorReproduciones();  //----------------------- 0052 para incrementar el nº de reproducciones
             reproduciendose = true;     // --------------------------------------- 0054
             player.startPlaying(track.getFilename());
             System.out.println("Now playing: " + track.getArtist() + " - " + track.getTitle ());
+        }
+        else{
+            System.out.println("Error ya hay una reproducción en curso ");
         }
        
     }
@@ -215,11 +218,14 @@ public class MusicOrganizer
      */
     public void playFirst()
     {
-        if(tracks.size() > 0) {
+        if(tracks.size() > 0 && reproduciendose == false) {
             tracks.get(0).incrementaContadorReproduciones();//-para que se incremente la reproducción que está en 0------0052
                                                               // le aplicamos el mt. incre... sobre el trac 0 "tracks.get(0)"
             player.startPlaying(tracks.get(0).getFilename());
             reproduciendose = true;     // --------------------------------------- 0054
+        }
+        else{  // --------------------------------------------------------------------------------- 0054
+            System.out.println("Error ya hay una reproducción en curso ");
         }
     }
     

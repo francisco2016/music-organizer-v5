@@ -5,6 +5,8 @@ import java.util.Random;   //---------------------------------------------------
  * A class to hold details of audio tracks.
  * Individual tracks may be played.
  * 
+ * Una clase para mantener los detalles de las pistas de audio.
+  * Pistas individuales pueden ser reproducidos.
  * @author David J. Barnes and Michael KÃ¶lling
  * @version 2011.07.31
  */
@@ -16,6 +18,8 @@ public class MusicOrganizer
     private MusicPlayer player;
     // A reader that can read music files and load them as tracks.
     private TrackReader reader;
+    //para señalar si un track se está reproduciendo.
+    private boolean reproduciendose;   //---------------------------------------------------------------------------0054
 
 
     /**
@@ -26,9 +30,10 @@ public class MusicOrganizer
         tracks = new ArrayList<Track>();
         player = new MusicPlayer();
         reader = new TrackReader();
-        readLibrary(lugarDeArchivos);  //sustituido "audio" por: lugarDeArchivos
+        readLibrary(lugarDeArchivos);  //sustituido "audio" por: lugarDeArchivos   ------------------------ 0057
         System.out.println("Music library loaded. " + getNumberOfTracks() + " tracks.");
         System.out.println();
+        reproduciendose = false;     //----------------------------------------------------------------- 0054
     }
     
     /**
@@ -76,6 +81,18 @@ public class MusicOrganizer
         
         }
     
+    }
+    
+    /**
+     *  cuando es invocado informa por pantalla de si en este momento se está reproduciendo un track completo o si no  
+     */
+    public void isPlayin(){        //----------------------------------------------------------------------- 0054
+        if(reproduciendose == true){
+            System.out.println("Error ya tenemos un track reproduciendose.");
+        }
+        else{
+            System.out.println("No tenemos track reproduciendose.");
+        }
     }
     
     /**
@@ -129,6 +146,7 @@ public class MusicOrganizer
         if(indexValid(index)) {
             Track track = tracks.get(index);
             track.incrementaContadorReproduciones();  //----------------------- 0052 para incrementar el nº de reproducciones
+            reproduciendose = true;     // --------------------------------------- 0054
             player.startPlaying(track.getFilename());
             System.out.println("Now playing: " + track.getArtist() + " - " + track.getTitle ());
         }
@@ -201,6 +219,7 @@ public class MusicOrganizer
             tracks.get(0).incrementaContadorReproduciones();//-para que se incremente la reproducción que está en 0------0052
                                                               // le aplicamos el mt. incre... sobre el trac 0 "tracks.get(0)"
             player.startPlaying(tracks.get(0).getFilename());
+            reproduciendose = true;     // --------------------------------------- 0054
         }
     }
     
@@ -210,6 +229,7 @@ public class MusicOrganizer
     public void stopPlaying()
     {
         player.stop();
+        reproduciendose = false;    //-------------------------------------------------------------------- 0054
     }
 
     /**

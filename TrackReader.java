@@ -8,8 +8,15 @@ import java.util.ArrayList;
  * from a given folder with a specified suffix. It will interpret the file name as artist/
  * track title information.
  * 
+ *  Una clase de ayuda para nuestra aplicación de música. Esta clase puede leer archivos del sistema de archivos
+  * Desde una carpeta determinada con un sufijo especificado. Se interpretará el nombre de archivo como artista /
+  * Información título de la pista.
+ * 
  * It is expected that file names of music tracks follow a standard format of artist name
  * and track name, separated by a dash. For example: TheBeatles-HereComesTheSun.mp3
+ * 
+ * Se espera que los nombres de archivo de las pistas de música siguen un formato estándar de nombre del artista
+  * Y nombre de la pista, separados por un guión. Por ejemplo: Thebeatles-HereComesTheSun.mp3
  * 
  * @author David J. Barnes and Michael KÃ¶lling
  * @version 2011.03.27

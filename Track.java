@@ -2,6 +2,8 @@
  * Store the details of a music track,
  * such as the artist, title, and file name.
  * 
+ * Guarde los detalles de una pista de música,
+  * Como el artista, el título y el nombre del archivo.
  * @author David J. Barnes and Michael KÃ¶lling
  * @version 2011.07.31
  */

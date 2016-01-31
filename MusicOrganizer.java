@@ -36,12 +36,14 @@ public class MusicOrganizer
         reproduciendose = false;     //----------------------------------------------------------------- 0054
     }
     
-    /**
-     * reproduzce una de las canciones del organizador al azar    ---------------------------------------- 0057
+    /*** reproduzce una de las canciones al azar del organizador     ---------------------------------------------- 0057
      */
     public void playRandom(){
-    
+        Random numAzar = new Random();   //creo el objeto Random.
+        int numeroAzar = numAzar.nextInt(tracks.size()); //le aplico el mt.nextInt() y guardo el valor en una VL.
+        playTrack(numeroAzar);    //invoco al mt. de reproducir track, con parámetro el nº creado por el Random.
     }
+
     
     /**
      * permita eliminar del organizador los tracks que contengan un determinado artista usando un iterador

@@ -1,6 +1,7 @@
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Random;   //----------------------------------------------------------------------- 0057
+import java.util.Random;       //----------------------------------------------------------------------- 0057
+import java.util.Collections;  //----------------------------------------------------------------------- 0057
 /**
  * A class to hold details of audio tracks.
  * Individual tracks may be played.
@@ -21,7 +22,6 @@ public class MusicOrganizer
     //para señalar si un track se está reproduciendo.
     private boolean reproduciendose;   //---------------------------------------------------------------------------0054
 
-
     /**
      * Create a MusicOrganizer
      */
@@ -35,7 +35,23 @@ public class MusicOrganizer
         System.out.println();
         reproduciendose = false;     //----------------------------------------------------------------- 0054
     }
-    
+
+    /**
+     * permite reproducir los primeros segundos de cada canción en orden aleatorio y cumple los siguientes requisitos:
+     *Cada canción debe reproducirse una única vez y deben reproducirse todas las canciones.
+     *Los contadores de reproducción deben actualizarse correctamente.
+     *Debe mostrar por pantalla los detalles de la canción que está sonando en este momento. -------------------- 0057
+     */
+    public void playSuffle(){   // ------------------------------------------------------------------------------ 0057
+        Collections.shuffle(tracks);
+        for(Track track : tracks){
+            track.incrementaContadorReproduciones();
+            System.out.println("Canción de. " +track.getDetails());
+            player.playSample(track.getFilename());
+        }
+
+    }
+
     /*** reproduzce una de las canciones al azar del organizador     ---------------------------------------------- 0057
      */
     public void playRandom(){
@@ -44,7 +60,6 @@ public class MusicOrganizer
         playTrack(numeroAzar);    //invoco al mt. de reproducir track, con parámetro el nº creado por el Random.
     }
 
-    
     /**
      * permita eliminar del organizador los tracks que contengan un determinado artista usando un iterador
      */
@@ -53,11 +68,11 @@ public class MusicOrganizer
         while(pistas.hasNext()){
             Track mostrarPistas = pistas.next();
             if(mostrarPistas.getArtist().contains(nombreAr)){
-               pistas.remove();
+                pistas.remove();
             }
         }
     }
-    
+
     /**
      * que permita eliminar del organizador los tracks que contengan una determinada cadena 
      * en el título de la canción 
@@ -67,11 +82,11 @@ public class MusicOrganizer
         while(pistas.hasNext()){
             Track mostrarPistas = pistas.next();
             if(mostrarPistas.getTitle().contains(titulo)){
-               pistas.remove();
+                pistas.remove();
             }
         }
     }
-    
+
     /**
      * muestra los detalles de todos los tracks almacenados en un organizador usando un iterador.   ------------------- 0055
      */
@@ -80,11 +95,11 @@ public class MusicOrganizer
         while(pistas.hasNext()){
             Track mostrarPistas = pistas.next();
             System.out.println(mostrarPistas.getDetails());
-        
+
         }
-    
+
     }
-    
+
     /**
      *  cuando es invocado informa por pantalla de si en este momento se está reproduciendo un track completo o si no  
      */
@@ -96,7 +111,7 @@ public class MusicOrganizer
             System.out.println("No tenemos track reproduciendose.");
         }
     }
-    
+
     /**
      * mt para poder fijar a un track su duración. 
      * dos parámetros, uno para elegir la posición del track, el otro para asignar la duracion.
@@ -106,21 +121,19 @@ public class MusicOrganizer
             tracks.get(index).setTiempoCancion(tiempo);
         }
     }
-    
-    
+
     /**
      * añade un método a la clase MusicOrganizer llamado findInTitle que tome un único parámetro de tipo String y muestre
      * por pantalla la información de los tracks que contienen dicha cadena en el título de la canción. ------------ 0052
      */
     public void findInTitle(String informaciónDeTracks){
-       for(Track datos : tracks){            //--------------------------------------------------------------------- 0052
-           if(datos.getTitle().contains(informaciónDeTracks)){
-               System.out.println(datos.getDetails());
-           }
-       }
+        for(Track datos : tracks){            //--------------------------------------------------------------------- 0052
+            if(datos.getTitle().contains(informaciónDeTracks)){
+                System.out.println(datos.getDetails());
+            }
+        }
     }
-    
-    
+
     /**
      * Add a track file to the collection.
      * @param filename The file name of the track to be added.
@@ -129,7 +142,7 @@ public class MusicOrganizer
     {
         tracks.add(new Track(filename));
     }
-    
+
     /**
      * Add a track to the collection.
      * @param track The track to be added.
@@ -138,7 +151,7 @@ public class MusicOrganizer
     {
         tracks.add(track);
     }
-    
+
     /**
      * Play a track in the collection.
      * @param index The index of the track to be played.
@@ -155,9 +168,9 @@ public class MusicOrganizer
         else{
             System.out.println("Error ya hay una reproducción en curso ");
         }
-       
+
     }
-    
+
     /**
      * Return the number of tracks in the collection.T
      * @return The number of tracks in the collection.
@@ -166,7 +179,7 @@ public class MusicOrganizer
     {
         return tracks.size();
     }
-    
+
     /**
      * List a track from the collection.
      * @param index The index of the track to be listed.
@@ -177,7 +190,7 @@ public class MusicOrganizer
         Track track = tracks.get(index);
         System.out.println(track.getDetails());
     }
-    
+
     /**
      * Show a list of all the tracks in the collection.
      */
@@ -190,7 +203,7 @@ public class MusicOrganizer
         }
         System.out.println();
     }
-    
+
     /**
      * List all tracks by the given artist.
      * @param artist The artist's name.
@@ -203,7 +216,7 @@ public class MusicOrganizer
             }
         }
     }
-    
+
     /**
      * Remove a track from the collection.
      * @param index The index of the track to be removed.
@@ -214,7 +227,7 @@ public class MusicOrganizer
             tracks.remove(index);
         }
     }
-    
+
     /**
      * Play the first track in the collection, if there is one.
      */
@@ -222,7 +235,7 @@ public class MusicOrganizer
     {
         if(tracks.size() > 0 && reproduciendose == false) {
             tracks.get(0).incrementaContadorReproduciones();//-para que se incremente la reproducción que está en 0------0052
-                                                              // le aplicamos el mt. incre... sobre el trac 0 "tracks.get(0)"
+            // le aplicamos el mt. incre... sobre el trac 0 "tracks.get(0)"
             player.startPlaying(tracks.get(0).getFilename());
             reproduciendose = true;     // --------------------------------------- 0054
         }
@@ -230,7 +243,7 @@ public class MusicOrganizer
             System.out.println("Error ya hay una reproducción en curso ");
         }
     }
-    
+
     /**
      * Stop the player.
      */
@@ -251,7 +264,7 @@ public class MusicOrganizer
         // The return value.
         // Set according to whether the index is valid or not.
         boolean valid;
-        
+
         if(index < 0) {
             System.out.println("Index cannot be negative: " + index);
             valid = false;
@@ -265,7 +278,7 @@ public class MusicOrganizer
         }
         return valid;
     }
-    
+
     private void readLibrary(String folderName)
     {
         ArrayList<Track> tempTracks = reader.readTracks(folderName, ".mp3");
@@ -275,21 +288,9 @@ public class MusicOrganizer
             addTrack(track);
         }
     }
-    
-    
+
     
 }
-
-
-
-
-
-
-
-
-
-
-
 
 
 

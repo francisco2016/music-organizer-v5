@@ -37,18 +37,41 @@ public class MusicOrganizer
     }
 
     /**
-     * permite reproducir los primeros segundos de cada canción en orden aleatorio y cumple los siguientes requisitos:
+     *permite reproducir los primeros segundos de cada canción en orden aleatorio y cumple los siguientes requisitos:
      *Cada canción debe reproducirse una única vez y deben reproducirse todas las canciones.
      *Los contadores de reproducción deben actualizarse correctamente.
      *Debe mostrar por pantalla los detalles de la canción que está sonando en este momento. -------------------- 0057
      */
     public void playSuffle(){   // ------------------------------------------------------------------------------ 0057
-        Collections.shuffle(tracks);
+        Collections.shuffle(tracks);        //---solo con esta línea la colección queda desordenada aleatoriament.
         for(Track track : tracks){
             track.incrementaContadorReproduciones();
             System.out.println("Canción de. " +track.getDetails());
             player.playSample(track.getFilename());
         }
+
+    }
+    
+    /**
+     * OTRA FORMA DE HACER EL EJERCICO DEL MT. public void playSuffle()
+     */
+    public void playShuffle2(){
+        ArrayList<Track> copia = new ArrayList<>();
+        copia = (ArrayList)tracks.clone(); 
+        int  numeroDeCancionesReproducidas = 0;
+		while(numeroDeCancionesReproducidas < tracks.size()){
+		    //elijo nº aleatorio entre las canciones que quedan por elegir.
+				Random aleatorio = new Random(); 
+				int numeroAleatorio = aleatorio.nextInt(copia.size());
+				
+				Track   trackElegido = copia.get(numeroAleatorio);
+				trackElegido.incrementaContadorReproduciones();
+                System.out.println("Canción de. " +trackElegido.getDetails());
+                player.playSample(trackElegido.getFilename());
+                
+                copia.remove(numeroAleatorio);
+                numeroDeCancionesReproducidas ++;
+		}
 
     }
 
